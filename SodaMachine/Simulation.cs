@@ -16,5 +16,10 @@ namespace SodaMachine
             sodaMachine = new SodaMachine();
             customer = new Customer();
         }
+
+        public void RunSimulation() 
+        { 
+        
+        }
     }
 }
