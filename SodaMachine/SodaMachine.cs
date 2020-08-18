@@ -14,10 +14,10 @@ namespace SodaMachine
         public SodaMachine()
         {
             register = new List<Coin>();
-            AddQuartersToRegister();
-            AddDimesToRegister();
-            AddNickelsToRegister();
-            AddPenniesToRegister();
+            AddCoinsToRegister(new Quarter(), 20);
+            AddCoinsToRegister(new Dime(), 10);
+            AddCoinsToRegister(new Nickel(), 20);
+            AddCoinsToRegister(new Penny(), 50);           
             inventory = new List<Can>();
         }
 
@@ -64,6 +64,17 @@ namespace SodaMachine
 
             }
         }
+
+        private void AddCoinsToRegister(Coin coin, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                register.Add(coin);
+
+            }
+
+        }
+
 
 
 
