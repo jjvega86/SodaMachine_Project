@@ -16,5 +16,18 @@ namespace SodaMachine
             wallet = new Wallet();
             backpack = new Backpack();
         }
+
+        public double GetWalletCoinValue()
+        {
+            double totalValue = 0;
+            for (int i = 0; i < wallet.coins.Count; i++)
+            {
+                totalValue += wallet.coins[i].Value;
+
+            }
+
+            return totalValue;
+
+        }
     }
 }
