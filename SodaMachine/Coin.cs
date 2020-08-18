@@ -19,6 +19,17 @@ namespace SodaMachine
             name = "Coin";
         }
 
+        // Is there a way to make this AddCoin method at a level that allows it to be used by other classes 
+        // that need it?
+        //public void AddCoin(Coin coin, List<Coin> list, int count) 
+        //{
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        list.Add(coin);
+        //    }
+
+        //}
+
 
     }
 }

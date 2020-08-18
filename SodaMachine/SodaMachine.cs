@@ -13,7 +13,7 @@ namespace SodaMachine
 
         public SodaMachine()
         {
-            register = new List<Coin>();
+            register = new List<Coin>();           
             AddCoinsToRegister(new Quarter(), 20);
             AddCoinsToRegister(new Dime(), 10);
             AddCoinsToRegister(new Nickel(), 20);
