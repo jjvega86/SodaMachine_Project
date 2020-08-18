@@ -8,5 +8,13 @@ namespace SodaMachine
 {
     class SodaMachine
     {
+        public List<Coin> register;
+        public List<Can> inventory;
+
+        public SodaMachine()
+        {
+            register = new List<Coin>();
+            inventory = new List<Can>();
+        }
     }
 }

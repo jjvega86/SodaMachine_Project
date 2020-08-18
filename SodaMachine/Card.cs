@@ -8,5 +8,14 @@ namespace SodaMachine
 {
     class Card
     {
+        private double availableFunds;
+        public double AvailableFunds { get; set; }
+
+        public Card()
+        {
+            availableFunds = 100.00;
+           
+
+        }
     }
 }

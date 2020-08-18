@@ -8,5 +8,10 @@ namespace SodaMachine
 {
     class Nickel : Coin
     {
+        public Nickel()
+        {
+            value = 0.05;
+            name = "Nickel";
+        }
     }
 }
