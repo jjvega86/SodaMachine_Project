@@ -27,7 +27,15 @@ namespace SodaMachine
             }
 
             return totalValue;
+        }
 
+        public void SelectCoins(Wallet wallet)
+        {
+            foreach(Coin coin in wallet.coins)
+            {
+
+            }
+            
         }
     }
 }

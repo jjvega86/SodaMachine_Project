@@ -18,7 +18,8 @@ namespace SodaMachine
         }
 
         public void RunSimulation() 
-        { 
+        {
+            Console.WriteLine(customer.GetWalletCoinValue());
         
         }
     }
