@@ -31,8 +31,8 @@ namespace SodaMachine
 
             UserInterface.DisplaySodaInventory(sodaMachine.inventory);
             UserInterface.DisplayCoins(customer.wallet.coins);
-            sodaMachine.ReceivePayment(customer.SelectCoins(customer.wallet));
-            customer.GetSoda(sodaMachine);
+            sodaMachine.ValidateTransaction(customer.SelectCoins(customer.wallet), customer.SelectSoda());
+
 
 
 

@@ -62,6 +62,12 @@ namespace SodaMachine
 
         }
 
+        public string SelectSoda()
+        {
+            stringInput = UserInterface.GetUserInputString("Please pick the soda you would like!");
+            return stringInput;
+        }
+
         public void GetSoda(SodaMachine machine)
         {
 

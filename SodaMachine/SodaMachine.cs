@@ -41,10 +41,47 @@ namespace SodaMachine
 
         }
 
-       public void ReceivePayment(List<Coin> payment)
+       public bool ValidateTransaction(List<Coin> payment, string input)
+       {
+            bool transactionSuccess = false;
+            
+
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                if(input == inventory[i].name)
+                {
+                    if(inventory[i].Cost <= CalculateTotal(payment))
+                    {
+                        transactionSuccess = true;
+                        break;
+                    }
+                    
+                }
+
+            }
+
+            return transactionSuccess;
+       }
+
+       private double CalculateTotal(List<Coin> coins)
         {
+            double totalPayment = 0;
+
+            foreach (Coin coin in coins)
+            {
+                totalPayment += coin.Value;
+            }
+
+            return totalPayment;
 
         }
+
+        
+
+
+
+
+     
 
 
 
