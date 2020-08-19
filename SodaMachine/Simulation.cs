@@ -31,8 +31,9 @@ namespace SodaMachine
 
             UserInterface.DisplaySodaInventory(sodaMachine.inventory);
             UserInterface.DisplayCoins(customer.wallet.coins);
-            sodaMachine.ValidateTransaction(customer.SelectCoins(customer.wallet), customer.SelectSoda());
-
+            customer.AddSodaToBackpack(sodaMachine.DispenseSoda(sodaMachine.ValidateTransaction(customer.SelectCoins(customer.wallet), customer.SelectSoda())));
+            UserInterface.DisplayBackPackContents(customer.backpack.cans);
+            //Am I creating too much dependency? Should these methods be called sequentially instead of being nested in each other?
 
 
 

@@ -22,6 +22,15 @@ namespace SodaMachine
             return input;
         }
 
+        public static void DisplayBackPackContents(List<Can> cans)
+        {
+            for (int i = 0; i < cans.Count; i++)
+            {
+                Console.WriteLine("Here are the contents of your bookbag!");
+                Console.WriteLine($"{cans[i].name}");
+            }
+        }
+
         public static void ValidateUserInput()
         {
             // wait until everything is working before implementing. Assume all user input is perfectu
