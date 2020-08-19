@@ -41,6 +41,16 @@ namespace SodaMachine
 
         }
 
+        public void DisplaySodaInventory()
+        {
+
+        }
+
+        public void ChooseSoda()
+        {
+
+        }
+
 
 
 

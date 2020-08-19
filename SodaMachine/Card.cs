@@ -9,7 +9,7 @@ namespace SodaMachine
     class Card
     {
         private double availableFunds;
-        public double AvailableFunds { get; set; }
+        public double AvailableFunds { get { return availableFunds; } set { availableFunds = value; } }
 
         public Card()
         {
