@@ -20,13 +20,13 @@ namespace SodaMachine
             intInput = 0;
         }
 
+        
+
 
         public List<Coin> SelectCoins(Wallet wallet)
         {
             bool choiceComplete = false;
-            List<Coin> payment = new List<Coin>();
-            UserInterface.DisplayCoins(wallet.coins);
-           
+            List<Coin> payment = new List<Coin>();           
             while(choiceComplete == false)
             {
                 stringInput = UserInterface.GetUserInputString("Which type of coins would you like to use?");
@@ -64,28 +64,39 @@ namespace SodaMachine
 
        
 
-        public void ChooseSoda(SodaMachine machine)
+        public void GetSoda(SodaMachine machine)
         {
-            //Display the soda inventory
-            //Get user's choice as a string
-            //compare user choice to inventory
-            //if choice is available, 
-            UserInterface.DisplaySodaInventory(machine.inventory);
+
             stringInput = UserInterface.GetUserInputString("Please pick the soda you would like!");
-            machine.CheckInventory(stringInput);
+
+            for (int  i = 0;  i < machine.inventory.Count;  i++)
+            {
+                if (machine.inventory[i].name.Contains(stringInput))
+                {
+                    AddSodaToBackpack(machine.inventory[i]);
+                    machine.inventory.RemoveAt(i);
+                }
+
+            }
             
         }
 
-        public void PayForSoda()
+        public void CheckPayment()
+        {
+            //check select coins against cost of soda. If equal to cost, add soda to backpack and remove from
+            //inventory. Then ANOTHER method to add payment to register.
+        }
+
+        public void PayForSoda(List<Coin> payment, Can soda)
         {
             //take return from SelectCoins and ChooseSoda
             //if payment is equal to value of soda, remove from inventory
             //Add soda to backpack
         }
 
-        public void AddSodaToBackpack()
+        public void AddSodaToBackpack(Can can)
         {
-
+            backpack.cans.Add(can);
         }
 
         
