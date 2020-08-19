@@ -8,7 +8,26 @@ namespace SodaMachine
 {
     public static class UserInterface
     {
-        
+        public static int GetUserInputInt(string prompt)
+        {
+            Console.WriteLine(prompt);
+            int input = int.Parse(Console.ReadLine());
+            return input;
+
+        }
+        public static string GetUserInputString(string prompt)
+        {
+            Console.WriteLine(prompt);
+            string input = Console.ReadLine();
+            return input;
+        }
+
+        public static void ValidateUserInput()
+        {
+            // wait until everything is working before implementing. Assume all user input is perfectu
+            // until then
+        }
+
         public static int DisplayUserOptions()
         {
             Console.WriteLine("Welcome to the soda machine! What would you like to do?");
@@ -18,28 +37,22 @@ namespace SodaMachine
             int userInput = int.Parse(Console.ReadLine());
             return userInput;
         }
-        public static void GetUserInput()
-        {
-
-        }
-        public static void ValidateUserInput() // UserInterface
-        {
-
-        }
+        
+        
         public static void DisplaySodaInventory(List<Can> inventory)
         {
-            for (int i = 0; i < inventory.Count; i++)
+            //Create a List here.
+            //If the type of item is different, add it to this list, then display
+            //List<string> names = inventory.Select(i => i.name).Distinct(); THIS REPLACES THE FOR LOOP
+            for (int i = 0; i < inventory.Count; i++) // need to refactor to only show available types of sodas
             {
-                Console.WriteLine($"{i+1}: {inventory[i].name}\n");
+               
+                Console.WriteLine($"{i + 1}: {inventory[i].name}\n");
 
             }
 
         }
-
-        public static void ChooseSoda()
-        {
-
-        }
+        
 
     }
 }

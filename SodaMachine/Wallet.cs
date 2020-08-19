@@ -29,5 +29,18 @@ namespace SodaMachine
                 coins.Add(coin);
             }
         }
+
+        public double GetTotalCoins() 
+        {
+            double totalValue = 0;
+            for (int i = 0; i < coins.Count; i++)
+            {
+                totalValue += coins[i].Value;
+
+            }
+
+            return totalValue;
+
+        }
     }
 }
