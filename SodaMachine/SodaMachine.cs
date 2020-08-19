@@ -41,7 +41,10 @@ namespace SodaMachine
 
         }
 
-       
+       public void ReceivePayment(List<Coin> payment)
+        {
+
+        }
 
 
 

@@ -62,8 +62,6 @@ namespace SodaMachine
 
         }
 
-       
-
         public void GetSoda(SodaMachine machine)
         {
 
@@ -75,34 +73,16 @@ namespace SodaMachine
                 {
                     AddSodaToBackpack(machine.inventory[i]);
                     machine.inventory.RemoveAt(i);
+                    break;
                 }
 
             }
             
         }
-
-        public void CheckPayment()
-        {
-            //check select coins against cost of soda. If equal to cost, add soda to backpack and remove from
-            //inventory. Then ANOTHER method to add payment to register.
-        }
-
-        public void PayForSoda(List<Coin> payment, Can soda)
-        {
-            //take return from SelectCoins and ChooseSoda
-            //if payment is equal to value of soda, remove from inventory
-            //Add soda to backpack
-        }
-
         public void AddSodaToBackpack(Can can)
         {
             backpack.cans.Add(can);
         }
-
-        
-
-        
-
-        
+ 
     }
 }
