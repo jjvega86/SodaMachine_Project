@@ -29,6 +29,7 @@ namespace SodaMachine
         }        
         public static void DisplaySodaInventory(List<Can> inventory)
         {
+            
             int count = 0;
             
             for (int i = 0; i < inventory.Count; i++) 
@@ -36,14 +37,14 @@ namespace SodaMachine
                 if (i == 0)
                 {
                     count++;
-                    Console.WriteLine($"{count}: {inventory[i].name}\n");
+                    Console.WriteLine($"{count}: {inventory[i].name} {inventory[i].Cost}\n");
 
 
                 }
                 else if (inventory[i].name != inventory[i - 1].name)
                 {
                     count++;
-                    Console.WriteLine($"{count}: {inventory[i].name}\n");
+                    Console.WriteLine($"{count}: {inventory[i].name} {inventory[i].Cost}\n");
 
                 }
                 else

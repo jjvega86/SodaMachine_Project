@@ -9,7 +9,8 @@ namespace SodaMachine
     public abstract class Can
     {
         protected double cost;
-        public double Cost { get; } //same principles as Coin class. User can access cost of Can object but can't change its protected value. Children inherit.
+        public double Cost { get { return cost; } } 
+        //same principles as Coin class. User can access cost of Can object but can't change its protected value. Children inherit.
         //need to set get to return protect cost variable
         public string name;
 

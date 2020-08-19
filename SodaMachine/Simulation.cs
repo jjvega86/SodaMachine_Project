@@ -19,10 +19,11 @@ namespace SodaMachine
 
         public void RunSimulation() 
         {
-            customer.SelectCoins(customer.wallet);
-            customer.ChooseSoda(sodaMachine);
+            customer.ChooseSoda(sodaMachine); //choose the soda first. 
+            customer.SelectCoins(customer.wallet); //then, pick the money used to pay for the soda
 
-            
+
+
 
         }
     }
