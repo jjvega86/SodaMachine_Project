@@ -19,6 +19,7 @@ namespace SodaMachine
 
         public void RunSimulation() 
         {
+            customer.SelectCoins(customer.wallet);
             customer.ChooseSoda(sodaMachine);
 
             

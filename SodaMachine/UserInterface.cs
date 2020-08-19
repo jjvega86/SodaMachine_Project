@@ -58,6 +58,28 @@ namespace SodaMachine
 
         }
 
+        public static void DisplayCoins(List<Coin> coins)
+        {
+            //As a customer, I want to see all of the coins in my wallet. How many of each, and total money
+            // available
+            double totalAvailable = 0;
+            string coinTypes = "";
+            
+            foreach (Coin coin in coins)
+            {
+                totalAvailable += coin.Value;
+                if (coinTypes.Contains(coin.name) == false)
+                {
+                    coinTypes += coin.name + "," + "";
+                }
+
+            }
+
+            Console.WriteLine($"You have ${totalAvailable} in your wallet");
+            Console.WriteLine($"In {coinTypes} .");
+
+        }
+
 
     }
 }
