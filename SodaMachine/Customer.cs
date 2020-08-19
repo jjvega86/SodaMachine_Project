@@ -68,23 +68,7 @@ namespace SodaMachine
             return stringInput;
         }
 
-        public void GetSoda(SodaMachine machine)
-        {
-
-            stringInput = UserInterface.GetUserInputString("Please pick the soda you would like!");
-
-            for (int  i = 0;  i < machine.inventory.Count;  i++)
-            {
-                if (machine.inventory[i].name.Contains(stringInput))
-                {
-                    AddSodaToBackpack(machine.inventory[i]);
-                    machine.inventory.RemoveAt(i);
-                    break;
-                }
-
-            }
-            
-        }
+        
         public void AddSodaToBackpack(Can can)
         {
             backpack.cans.Add(can);

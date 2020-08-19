@@ -79,6 +79,19 @@ namespace SodaMachine
 
         }
 
+        public static double CalculateTotal(List<Coin> coins)
+        {
+            double totalPayment = 0;
+
+            foreach (Coin coin in coins)
+            {
+                totalPayment += coin.Value;
+            }
+
+            return totalPayment;
+
+        }
+
 
     }
 }

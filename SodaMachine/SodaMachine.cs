@@ -10,6 +10,7 @@ namespace SodaMachine
     {
         public List<Coin> register;
         public List<Can> inventory;
+        string userSelection;
 
         public SodaMachine()
         {
@@ -22,6 +23,8 @@ namespace SodaMachine
             AddCansToInventory(new Cola(), 25);
             AddCansToInventory(new OrangeSoda(), 25);
             AddCansToInventory(new RootBeer(), 25);
+
+            userSelection = "";
         }
 
         private void AddCoinsToRegister(Coin coin, int count)
@@ -41,8 +44,8 @@ namespace SodaMachine
 
         }
 
-       public bool ValidateTransaction(List<Coin> payment, string input)
-       {
+        public bool ValidateTransaction(List<Coin> payment, string input)
+        {
             bool transactionSuccess = false;
             
 
@@ -50,9 +53,10 @@ namespace SodaMachine
             {
                 if(input == inventory[i].name)
                 {
-                    if(inventory[i].Cost <= CalculateTotal(payment))
+                    if(inventory[i].Cost <= UserInterface.CalculateTotal(payment))
                     {
                         transactionSuccess = true;
+                        userSelection = input;
                         break;
                     }
                     
@@ -61,27 +65,41 @@ namespace SodaMachine
             }
 
             return transactionSuccess;
-       }
-
-       private double CalculateTotal(List<Coin> coins)
-        {
-            double totalPayment = 0;
-
-            foreach (Coin coin in coins)
-            {
-                totalPayment += coin.Value;
-            }
-
-            return totalPayment;
-
         }
 
         
 
+        public Can DispenseSoda(bool transactionSuccess)
+        {
+            int index = 0;
+            if (transactionSuccess == true)
+            {
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    if (inventory[i].name.Contains(userSelection))
+                    {
+                        
+                        inventory.RemoveAt(i);
+                        index = i;
+                        
+                        
+                    }
+
+                }
+
+            }
+            return inventory[index];
+
+
+        }
 
 
 
-     
+
+
+
+
+
 
 
 
