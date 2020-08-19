@@ -57,10 +57,7 @@ namespace SodaMachine
                 }
 
 
-            }
-
-            
-           
+            } 
             return payment;
 
         }
@@ -69,9 +66,26 @@ namespace SodaMachine
 
         public void ChooseSoda(SodaMachine machine)
         {
+            //Display the soda inventory
+            //Get user's choice as a string
+            //compare user choice to inventory
+            //if choice is available, 
             UserInterface.DisplaySodaInventory(machine.inventory);
             stringInput = UserInterface.GetUserInputString("Please pick the soda you would like!");
+            machine.CheckInventory(stringInput);
             
+        }
+
+        public void PayForSoda()
+        {
+            //take return from SelectCoins and ChooseSoda
+            //if payment is equal to value of soda, remove from inventory
+            //Add soda to backpack
+        }
+
+        public void AddSodaToBackpack()
+        {
+
         }
 
         

@@ -41,7 +41,23 @@ namespace SodaMachine
 
         }
 
-        
+        public bool CheckInventory(string input)
+        {
+            bool hasSoda = false;
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                if (input == inventory[i].name)
+                {
+                    hasSoda = true;
+                }
+
+            }
+
+
+
+            return hasSoda;
+
+        }
 
 
 
