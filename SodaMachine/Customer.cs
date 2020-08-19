@@ -21,11 +21,28 @@ namespace SodaMachine
         }
 
 
-        public void SelectCoins(Wallet wallet)
+        public List<Coin> SelectCoins(Wallet wallet)
         {
             List<Coin> payment = new List<Coin>();
             UserInterface.DisplayCoins(wallet.coins);
             stringInput = UserInterface.GetUserInputString("Which type of coins would you like to use?");
+            intInput = UserInterface.GetUserInputInt("How many of those coins would you like to use?");
+
+            
+            for (int i = 0; i < intInput; i++)
+            {
+                foreach (Coin coin in wallet.coins)
+                {
+                    if (stringInput == coin.name)
+                    {
+                        payment.Add(coin);
+                    }
+                }
+                
+
+            }
+
+            return payment;
 
         }
 
