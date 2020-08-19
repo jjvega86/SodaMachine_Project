@@ -26,34 +26,24 @@ namespace SodaMachine
         {
             // wait until everything is working before implementing. Assume all user input is perfectu
             // until then
-        }
-
-        public static int DisplayUserOptions()
-        {
-            Console.WriteLine("Welcome to the soda machine! What would you like to do?");
-            Console.WriteLine("1. Display soda options");
-            Console.WriteLine("2. Check wallet");
-            Console.WriteLine("3. Select soda");
-            int userInput = int.Parse(Console.ReadLine());
-            return userInput;
-        }
-        
-        
+        }        
         public static void DisplaySodaInventory(List<Can> inventory)
         {
-
+            int count = 0;
             
-            for (int i = 0; i < inventory.Count; i++) // need to refactor to only show available types of sodas
+            for (int i = 0; i < inventory.Count; i++) 
             {
                 if (i == 0)
                 {
-                    Console.WriteLine($"{inventory[i].name}\n");
+                    count++;
+                    Console.WriteLine($"{count}: {inventory[i].name}\n");
 
 
                 }
                 else if (inventory[i].name != inventory[i - 1].name)
                 {
-                    Console.WriteLine($"{inventory[i].name}\n");
+                    count++;
+                    Console.WriteLine($"{count}: {inventory[i].name}\n");
 
                 }
                 else
@@ -63,8 +53,8 @@ namespace SodaMachine
                
 
             }
-            //List<string> names = inventory.Select(i => i.name).Distinct(); 
-
+            // List<string> names = inventory.Select(i => i.name).Distinct();
+            // see page re: Language-Integrated Query (from David DM)
 
         }
 

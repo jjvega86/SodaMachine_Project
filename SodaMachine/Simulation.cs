@@ -19,7 +19,7 @@ namespace SodaMachine
 
         public void RunSimulation() 
         {
-            UserInterface.DisplaySodaInventory(sodaMachine.inventory);
+            customer.ChooseSoda(sodaMachine);
 
             
 

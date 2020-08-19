@@ -10,18 +10,26 @@ namespace SodaMachine
     {
         public Wallet wallet;
         public Backpack backpack;
+        int intInput;
+        string stringInput;
 
         public Customer()
         {
             wallet = new Wallet();
             backpack = new Backpack();
+            intInput = 0;
         }
 
-        public void ChooseSoda(SodaMachine machine)
+        public void SelectCoins()
+        {
+
+        }
+
+        public int ChooseSoda(SodaMachine machine)
         {
             UserInterface.DisplaySodaInventory(machine.inventory);
-            UserInterface.GetUserInputInt("Please pick the number of the soda you would like!");
-
+            intInput = UserInterface.GetUserInputInt("Please pick the number of the soda you would like!");
+            return intInput;
         }
 
         
