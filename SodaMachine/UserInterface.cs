@@ -41,18 +41,33 @@ namespace SodaMachine
         
         public static void DisplaySodaInventory(List<Can> inventory)
         {
-            //Create a List here.
-            //If the type of item is different, add it to this list, then display
-            //List<string> names = inventory.Select(i => i.name).Distinct(); THIS REPLACES THE FOR LOOP
+
+            
             for (int i = 0; i < inventory.Count; i++) // need to refactor to only show available types of sodas
             {
+                if (i == 0)
+                {
+                    Console.WriteLine($"{inventory[i].name}\n");
+
+
+                }
+                else if (inventory[i].name != inventory[i - 1].name)
+                {
+                    Console.WriteLine($"{inventory[i].name}\n");
+
+                }
+                else
+                {
+                    continue;
+                }
                
-                Console.WriteLine($"{i + 1}: {inventory[i].name}\n");
 
             }
+            //List<string> names = inventory.Select(i => i.name).Distinct(); 
+
 
         }
-        
+
 
     }
 }

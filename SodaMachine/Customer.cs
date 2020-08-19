@@ -17,6 +17,13 @@ namespace SodaMachine
             backpack = new Backpack();
         }
 
+        public void ChooseSoda(SodaMachine machine)
+        {
+            UserInterface.DisplaySodaInventory(machine.inventory);
+            UserInterface.GetUserInputInt("Please pick the number of the soda you would like!");
+
+        }
+
         
 
         
