@@ -32,7 +32,7 @@ namespace SodaMachine
                 int userInput = UserInterface.DisplayUserOptions(); //returns user input as int. Pass as parameter for Soda Machine method
                 if (userInput == 1)
                 {
-                    sodaMachine.DisplaySodaInventory();
+                    UserInterface.DisplaySodaInventory(sodaMachine.inventory);
                 }
                 else if (userInput == 2)
                 {
@@ -40,7 +40,11 @@ namespace SodaMachine
                 }
                 else if (userInput == 3)
                 {
-                    sodaMachine.ChooseSoda();
+                    UserInterface.ChooseSoda();
+                }
+                else
+                {
+                    UserInterface.ValidateUserInput();
                 }
 
             }

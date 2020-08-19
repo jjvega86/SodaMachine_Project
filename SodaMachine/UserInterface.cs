@@ -26,6 +26,20 @@ namespace SodaMachine
         {
 
         }
+        public static void DisplaySodaInventory(List<Can> inventory)
+        {
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                Console.WriteLine($"{i+1}: {inventory[i].name}\n");
+
+            }
+
+        }
+
+        public static void ChooseSoda()
+        {
+
+        }
 
     }
 }
