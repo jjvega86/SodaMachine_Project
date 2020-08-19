@@ -6,7 +6,27 @@ using System.Threading.Tasks;
 
 namespace SodaMachine
 {
-    class UserInterface
+    public static class UserInterface
     {
+        public static void SelectSoda()
+        {
+
+        }
+
+        public static void SelectPayment()
+        {
+
+        }
+
+        public static void InsertPayment()
+        {
+
+        }
+
+        public static void StoreSoda()
+        {
+
+        }
+
     }
 }
