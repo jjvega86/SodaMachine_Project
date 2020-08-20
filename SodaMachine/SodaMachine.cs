@@ -44,7 +44,16 @@ namespace SodaMachine
 
         }
 
-        public bool ValidateSelection(List<Coin> payment, string input) 
+        private void AddPaymentToRegister(List<Coin> payment)
+        {
+            for (int j = 0; j < payment.Count; j++)
+            {
+                register.Add(payment[j]);
+
+            }
+        }
+
+        public bool ValidateTransaction(List<Coin> payment, string input) 
         {
             bool transactionSuccess = false;
             
@@ -53,9 +62,10 @@ namespace SodaMachine
             {
                 if(input == inventory[i].name)
                 {
-                    if(inventory[i].Cost <= UserInterface.CalculateTotal(payment))
+                    if(inventory[i].Cost == UserInterface.CalculateTotal(payment))
                     {
                         transactionSuccess = true;
+                        AddPaymentToRegister(payment);
                         userSelection = input;
                         break;
                     }
@@ -64,6 +74,23 @@ namespace SodaMachine
                     {
                         UserInterface.InsufficientFunds(payment);
                         //then need to give money back
+                        //re-prompt for money (SelectCoins?)
+                    }
+
+                    if(inventory[i].Cost < UserInterface.CalculateTotal(payment))
+                    {
+                        transactionSuccess = true;
+                        List<Coin> customerChange = new List<Coin>(); //return of eventual seperate method
+
+                        while (inventory[i].Cost < UserInterface.CalculateTotal(payment))
+                        {
+                            for (int k = 0; k < payment.Count; k++)
+                            {
+                                customerChange.Add(payment[k]);
+                                break;
+                            }
+                        }
+                        AddPaymentToRegister(payment);
                     }
                     
                 }
@@ -73,12 +100,6 @@ namespace SodaMachine
             return transactionSuccess;
         }
 
-        public void ValidateTransactionMaster(List<Coin> payment) //only validates money, not soda selection
-        {
-            
-
-
-        }
 
         
 
