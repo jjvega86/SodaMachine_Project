@@ -37,10 +37,7 @@ namespace SodaMachine
             paymentSuccess = sodaMachine.ValidatePayment(payment);
             selectionSuccess = sodaMachine.ValidateSelection(sodaSelection);
 
-            if(paymentSuccess = true && selectionSuccess == true)
-            {
-                transactionSuccess = true;
-            }
+            UserInterface.ValidateTwoSelections(selectionSuccess, paymentSuccess);
 
             customer.AddChangeToWallet(sodaMachine.customerChange);
             customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));

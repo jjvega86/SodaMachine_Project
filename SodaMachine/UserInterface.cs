@@ -106,7 +106,20 @@ namespace SodaMachine
 
         }
 
-        
+        public static bool ValidateTwoSelections(bool one, bool two)
+        {
+            bool bothTrue = false;
+            if (one == true && two == true)
+            {
+                bothTrue = true;
+            }
+            else
+            {
+                Console.WriteLine("Oh no! Your selections are invalid. Please try again!");
+            }
+
+            return bothTrue;
+        }
 
 
     }
