@@ -58,7 +58,7 @@ namespace SodaMachine
             }
         }
 
-        public bool ValidateSelection(string input) 
+        public bool ValidateUserSelection(string input) 
         {
             bool selectionSuccess = false;
             for (int i = 0; i < inventory.Count; i++)
@@ -69,36 +69,47 @@ namespace SodaMachine
                     userSelection = input;
                     selectionSuccess = true;   
                 }
+                else
+                {
+                    UserInterface.InsufficientInventory();
+
+                }
             }
             return selectionSuccess;
         }
 
-        public bool ValidatePayment(List<Coin> payment)
+        public bool ValidateUserPayment(List<Coin> payment)
         {
             bool paymentSuccess = false;
-            if (inventory[userSelectionIndex].Cost == UserInterface.CalculateTotal(payment))
+            if (register.Count == 0)
+            {
+                UserInterface.InsufficientChange();
+                GiveMoneyBack(payment);
+
+
+            }
+            else if (inventory[userSelectionIndex].Cost == UserInterface.CalculateTotal(payment))
             {
                 CompleteTransaction(payment, userSelection);
             }
 
-            if (inventory[userSelectionIndex].Cost > UserInterface.CalculateTotal(payment))
+            else if (inventory[userSelectionIndex].Cost > UserInterface.CalculateTotal(payment))
             {
+                GiveMoneyBack(payment);
                 UserInterface.InsufficientFunds(payment);
-                //then need to give money back
-                //re-prompt for money (SelectCoins?)
+                UserInterface.DisplayCoins(customerChange);
+
             }
 
-            if (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
+            else if (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
             {
                 MakeChange(payment);
                 CompleteTransaction(payment, userSelection);
 
             }
 
-            // if too much money is passed in but there isn't sufficient change in register, transactionSuccess == false
-            //money goes back to customer
+            
 
-            //if there isn't sufficient inventory for the sodas, don't complete the transaction and give money back
 
             return paymentSuccess;
 
@@ -108,74 +119,44 @@ namespace SodaMachine
         {
             double changeAmount = UserInterface.CalculateTotal(payment) - inventory[userSelectionIndex].Cost;
 
-            foreach (Quarter quarter in register)
+            for (int i = 0; i < register.Count; i++)
             {
-                if (changeAmount > quarter.Value)
+                if (changeAmount > register[i].Value)
                 {
-                    customerChange.Add(quarter);
-                    register.Remove(quarter);
-                    changeAmount -= quarter.Value;
+                    customerChange.Add(register[i]);
+                    changeAmount -= register[i].Value;
 
-                    continue;
                 }
-                else
+                else if (changeAmount == 0)
                 {
                     break;
                 }
-            }
-
-            foreach (Dime dime in register)
-            {
-                if (changeAmount > dime.Value)
-                {
-                    customerChange.Add(dime);
-                    register.Remove(dime);
-                    changeAmount -= dime.Value;
-
-                    continue;
-                }
+                
                 else
                 {
-                    break;
-                }
-
-            }
-
-            foreach (Nickel nickel in register)
-            {
-                if (changeAmount > nickel.Value)
-                {
-                    customerChange.Add(nickel);
-                    register.Remove(nickel);
-                    changeAmount -= nickel.Value;
-
                     continue;
                 }
-                else
-                {
-                    break;
-                }
+
 
             }
-
-            foreach (Penny penny in register)
-            {
-                if (changeAmount > penny.Value)
-                {
-                    customerChange.Add(penny);
-                    register.Remove(penny);
-                    changeAmount -= penny.Value;
-
-                    continue;
-                }
-                else
-                {
-                    break;
-                }
-
-            }
-
+            RemoveChangeFromRegister(customerChange);
             return customerChange;
+        }
+
+        public void GiveMoneyBack(List<Coin> payment)
+        {
+            foreach (Coin coin in payment)
+            {
+                customerChange.Add(coin);
+            }
+        }
+
+        private void RemoveChangeFromRegister(List<Coin> change)
+        {
+            foreach (Coin coin in change)
+            {
+                register.Remove(coin);
+            }
         }
  
 

@@ -27,6 +27,11 @@ namespace SodaMachine
             Console.WriteLine($"{UserInterface.CalculateTotal(payment)} is not enough!");
         }
 
+        public static void InsufficientInventory()
+        {
+            Console.WriteLine("There is not enough of your soda choice in our inventory! So sorry.");
+        }
+
         public static void DisplayBackPackContents(List<Can> cans)
         {
             for (int i = 0; i < cans.Count; i++)
@@ -120,6 +125,12 @@ namespace SodaMachine
 
             return bothTrue;
         }
+
+        public static void InsufficientChange()
+        {
+            Console.WriteLine("Oh no! We're out of change. Transaction unsuccessful.");
+        }
+
 
 
     }

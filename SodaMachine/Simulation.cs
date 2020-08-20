@@ -29,19 +29,22 @@ namespace SodaMachine
         }
 
         public void RunSimulation() 
-        {        
+        {
             UserInterface.DisplaySodaInventory(sodaMachine.inventory);
             UserInterface.DisplayCoins(customer.wallet.coins);
             payment = customer.SelectCoins(customer.wallet);
             sodaSelection = customer.SelectSoda();
-            paymentSuccess = sodaMachine.ValidatePayment(payment);
-            selectionSuccess = sodaMachine.ValidateSelection(sodaSelection);
 
-            UserInterface.ValidateTwoSelections(selectionSuccess, paymentSuccess);
+            paymentSuccess = sodaMachine.ValidateUserPayment(payment);
+            selectionSuccess = sodaMachine.ValidateUserSelection(sodaSelection);
+
+            transactionSuccess = UserInterface.ValidateTwoSelections(selectionSuccess, paymentSuccess);
 
             customer.AddChangeToWallet(sodaMachine.customerChange);
             customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));
             UserInterface.DisplayBackPackContents(customer.backpack.cans);
+            //add Summary UserInterface method that details transaction details
+            RunSimulation();
 
         }
     }
