@@ -12,6 +12,7 @@ namespace SodaMachine
         public List<Can> inventory;
         string userSelection;
         int userSelectionIndex;
+        bool transactionSuccess;
         public List<Coin> customerChange;
 
         public SodaMachine()
@@ -59,22 +60,16 @@ namespace SodaMachine
 
         public bool ValidateTransaction(List<Coin> payment, string input) 
         {
-            bool transactionSuccess = false;
-            
-
             for (int i = 0; i < inventory.Count; i++)
             {
                 if(input == inventory[i].name)
                 {
                     userSelectionIndex = i;
 
-
                     if(inventory[i].Cost == UserInterface.CalculateTotal(payment))
                     {
-                        transactionSuccess = true;
-                        AddPaymentToRegister(payment);
-                        userSelection = input;
-                        break;
+                        CompleteTransaction(payment, input);
+                        
                     }
 
                     if (inventory[i].Cost > UserInterface.CalculateTotal(payment))
@@ -86,9 +81,6 @@ namespace SodaMachine
 
                     if(inventory[i].Cost < UserInterface.CalculateTotal(payment))
                     {
-                        transactionSuccess = true;
-                         //return of eventual seperate method
-
                         while (inventory[i].Cost < UserInterface.CalculateTotal(payment))
                         {
                            customerChange.Add(payment[0]);
@@ -96,7 +88,7 @@ namespace SodaMachine
                            // need logic that adds coins from register to change if removed coins is less than change needed
 
                         }
-                        AddPaymentToRegister(payment);
+                        CompleteTransaction(payment, input);
                     }
 
                     // if too much money is passed in but there isn't sufficient change in register, transactionSuccess == false
@@ -109,6 +101,14 @@ namespace SodaMachine
             }
 
             return transactionSuccess;
+        }
+
+        public void CompleteTransaction(List<Coin> payment, string input)
+        {
+            transactionSuccess = true;
+            AddPaymentToRegister(payment);
+            userSelection = input;
+
         }
 
 
