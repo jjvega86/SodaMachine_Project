@@ -44,7 +44,7 @@ namespace SodaMachine
 
         }
 
-        public bool ValidateTransaction(List<Coin> payment, string input)
+        public bool ValidateSelection(List<Coin> payment, string input) 
         {
             bool transactionSuccess = false;
             
@@ -59,12 +59,25 @@ namespace SodaMachine
                         userSelection = input;
                         break;
                     }
+
+                    if (inventory[i].Cost > UserInterface.CalculateTotal(payment))
+                    {
+                        UserInterface.InsufficientFunds(payment);
+                        //then need to give money back
+                    }
                     
                 }
 
             }
 
             return transactionSuccess;
+        }
+
+        public void ValidateTransactionMaster(List<Coin> payment) //only validates money, not soda selection
+        {
+            
+
+
         }
 
         

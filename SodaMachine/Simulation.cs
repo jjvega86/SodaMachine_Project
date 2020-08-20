@@ -30,15 +30,9 @@ namespace SodaMachine
             UserInterface.DisplayCoins(customer.wallet.coins);
             payment = customer.SelectCoins(customer.wallet);
             sodaSelection = customer.SelectSoda();
-            transactionSuccess = sodaMachine.ValidateTransaction(payment, sodaSelection);            
+            transactionSuccess = sodaMachine.ValidateSelection(payment, sodaSelection);            
             customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));
-
             UserInterface.DisplayBackPackContents(customer.backpack.cans);
-            
-
-
-
-
 
         }
     }

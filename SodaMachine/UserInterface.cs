@@ -22,6 +22,11 @@ namespace SodaMachine
             return input;
         }
 
+        public static void InsufficientFunds(List<Coin> payment)
+        {
+            Console.WriteLine($"{UserInterface.CalculateTotal(payment)} is not enough!");
+        }
+
         public static void DisplayBackPackContents(List<Can> cans)
         {
             for (int i = 0; i < cans.Count; i++)
