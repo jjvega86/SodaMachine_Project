@@ -10,30 +10,31 @@ namespace SodaMachine
     {
         public SodaMachine sodaMachine;
         public Customer customer;
+        List<Coin> payment;
+        string sodaSelection;
+        bool transactionSuccess;
+        
 
         public Simulation()
         {
             sodaMachine = new SodaMachine();
             customer = new Customer();
+            payment = new List<Coin>();
+            sodaSelection = "";
+            transactionSuccess = false;
         }
 
         public void RunSimulation() 
-        {
-            //Customer looks at soda options and cost
-            //Customer checks wallet for enough change
-            //Customer picks coins, puts in hand(payment)
-            //Customer puts payment in soda machine and selects soda
-            //Soda Machine compares payment to cost of soda
-            //If payment is enough, Soda Machine dispenses soda
-            //Payment goes into register, change comes back
-            //Customer takes change and puts into wallet
-            //Customer takes soda and puts into bookbag
-
+        {        
             UserInterface.DisplaySodaInventory(sodaMachine.inventory);
             UserInterface.DisplayCoins(customer.wallet.coins);
-            customer.AddSodaToBackpack(sodaMachine.DispenseSoda(sodaMachine.ValidateTransaction(customer.SelectCoins(customer.wallet), customer.SelectSoda())));
+            payment = customer.SelectCoins(customer.wallet);
+            sodaSelection = customer.SelectSoda();
+            transactionSuccess = sodaMachine.ValidateTransaction(payment, sodaSelection);            
+            customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));
+
             UserInterface.DisplayBackPackContents(customer.backpack.cans);
-            //Am I creating too much dependency? Should these methods be called sequentially instead of being nested in each other?
+            
 
 
 

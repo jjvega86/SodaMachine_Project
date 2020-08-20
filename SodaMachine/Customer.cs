@@ -40,6 +40,7 @@ namespace SodaMachine
                         if (stringInput == coin.name)
                         {
                             payment.Add(coin);
+                            break;
                         }
                     }
 
