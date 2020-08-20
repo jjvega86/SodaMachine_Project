@@ -106,8 +106,8 @@ namespace SodaMachine
                 }
                 if (inputValid == false)
                 {
-                    stringInput = UserInterface.GetUserInputString("Do you want to select again?");
-
+                    input = UserInterface.GetUserInputString("Invalid choice! Please select again!");
+                    
                 }
             }
         }

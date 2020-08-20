@@ -139,9 +139,6 @@ namespace SodaMachine
 
             }
 
-            
-
-
             return paymentSuccess;
 
         }
