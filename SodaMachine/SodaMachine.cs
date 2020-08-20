@@ -103,14 +103,72 @@ namespace SodaMachine
 
         }
 
-        public void MakeChange(List<Coin> payment)
+        public List<Coin> MakeChange(List<Coin> payment)
         {
             double changeAmount = UserInterface.CalculateTotal(payment) - inventory[userSelectionIndex].Cost;
 
-            //I want to take the total payment and the cost of the soda
-            //If the total payment is more than the cost of the soda, I want to take total payment over the cost
-            //Then add that to a list that represents the customer's change until payment and cost are equal
-            //If the coins used by the customer makes 
+            foreach (Quarter quarter in register)
+            {
+                if (changeAmount > quarter.Value)
+                {
+                    customerChange.Add(quarter);
+                    register.Remove(quarter);
+
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            foreach (Dime dime in register)
+            {
+                if (changeAmount > dime.Value)
+                {
+                    customerChange.Add(dime);
+                    register.Remove(dime);
+
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+
+            foreach (Nickel nickel in register)
+            {
+                if (changeAmount > nickel.Value)
+                {
+                    customerChange.Add(nickel);
+                    register.Remove(nickel);
+
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+
+            foreach (Penny penny in register)
+            {
+                if (changeAmount > penny.Value)
+                {
+                    customerChange.Add(penny);
+                    register.Remove(penny);
+
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+
+            }
 
             while (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
             {
@@ -120,10 +178,8 @@ namespace SodaMachine
 
             }
 
-            while (UserInterface.CalculateTotal(customerChange) != changeAmount)
-            {
-                customerChange.Add(register[0]);
-            }
+
+            return customerChange;
         }
 
         public void CompleteTransaction(List<Coin> payment, string input)
