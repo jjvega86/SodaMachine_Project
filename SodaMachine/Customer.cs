@@ -43,8 +43,8 @@ namespace SodaMachine
             while(choiceComplete == false)
             {
                 stringInput = UserInterface.GetUserInputString("Which type of coins would you like to use?");
+                ValidateSodaSelectionInput(stringInput);
                 intInput = UserInterface.GetUserInputInt("How many of those coins would you like to use?");
-
                 
                 for (int i = 0; i < intInput; i++)
                 {
@@ -93,7 +93,7 @@ namespace SodaMachine
             return stringInput;
         }
 
-        public void ValidateSodaSelectionInput(string input)
+        public string ValidateSodaSelectionInput(string input)
         {
             foreach (Coin coin in wallet.coins)
             {
@@ -101,7 +101,13 @@ namespace SodaMachine
                 {
                     input = UserInterface.GetUserInputString("Please enter your choice again!");
                 }
+                else
+                {
+                    break;
+                }
             }
+
+            return input;
         }
 
         private void RemovePaymentFromWallet(List<Coin> payment)

@@ -10,8 +10,22 @@ namespace SodaMachine
     {
         public static int GetUserInputInt(string prompt)
         {
+            bool inputSuccess = false;
+
             Console.WriteLine(prompt);
             int input = int.Parse(Console.ReadLine());
+
+
+            while (inputSuccess == false)
+            {
+                inputSuccess = int.TryParse(Console.ReadLine(), out input);
+                if (inputSuccess == false)
+                {
+                    Console.WriteLine("I didn't recognize that input. Please try again!\n");
+
+                }
+            }
+
             return input;
 
         }
@@ -124,6 +138,8 @@ namespace SodaMachine
         {
             Console.WriteLine("Oh no! We're out of change. Transaction unsuccessful.");
         }
+
+      
 
 
 
