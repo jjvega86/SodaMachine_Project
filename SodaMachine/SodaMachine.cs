@@ -11,6 +11,8 @@ namespace SodaMachine
         public List<Coin> register;
         public List<Can> inventory;
         string userSelection;
+        int userSelectionIndex;
+        public List<Coin> customerChange;
 
         public SodaMachine()
         {
@@ -25,6 +27,8 @@ namespace SodaMachine
             AddCansToInventory(new RootBeer(), 25);
 
             userSelection = "";
+            userSelectionIndex = 0;
+            customerChange = new List<Coin>();
         }
 
         private void AddCoinsToRegister(Coin coin, int count)
@@ -62,6 +66,9 @@ namespace SodaMachine
             {
                 if(input == inventory[i].name)
                 {
+                    userSelectionIndex = i;
+
+
                     if(inventory[i].Cost == UserInterface.CalculateTotal(payment))
                     {
                         transactionSuccess = true;
@@ -80,18 +87,22 @@ namespace SodaMachine
                     if(inventory[i].Cost < UserInterface.CalculateTotal(payment))
                     {
                         transactionSuccess = true;
-                        List<Coin> customerChange = new List<Coin>(); //return of eventual seperate method
+                         //return of eventual seperate method
 
                         while (inventory[i].Cost < UserInterface.CalculateTotal(payment))
                         {
-                            for (int k = 0; k < payment.Count; k++)
-                            {
-                                customerChange.Add(payment[k]);
-                                break;
-                            }
+                           customerChange.Add(payment[0]);
+                           payment.RemoveAt(0);
+                           // need logic that adds coins from register to change if removed coins is less than change needed
+
                         }
                         AddPaymentToRegister(payment);
                     }
+
+                    // if too much money is passed in but there isn't sufficient change in register, transactionSuccess == false
+                    //money goes back to customer
+
+                    //if there isn't sufficient inventory for the sodas, don't complete the transaction and give money back
                     
                 }
 
