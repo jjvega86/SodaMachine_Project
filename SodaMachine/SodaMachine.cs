@@ -57,9 +57,25 @@ namespace SodaMachine
 
             }
         }
-
-        public bool ValidateUserSelection(string input) 
+        public string SelectSoda()
         {
+            string stringInput = UserInterface.GetUserInputString("Please pick the soda you would like!");
+            foreach (Can can in inventory)
+            {
+                if (stringInput != can.name)
+                {
+                    stringInput = UserInterface.GetUserInputString("Please enter your choice again!");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return stringInput;
+        }
+
+        public bool ValidateSodaSelection(string input) 
+        {            
             bool selectionSuccess = false;
             while (selectionSuccess == false)
             {
@@ -78,7 +94,6 @@ namespace SodaMachine
                     }
                     
                 }
-
             }
             
             return selectionSuccess;
@@ -191,10 +206,17 @@ namespace SodaMachine
                         
                         
                     }
+                    
 
                 }
+                
 
             }
+            else
+            {
+                UserInterface.InsufficientInventory();
+            }
+
             return inventory[index];
 
 

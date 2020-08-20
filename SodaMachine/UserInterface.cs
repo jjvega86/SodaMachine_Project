@@ -11,13 +11,11 @@ namespace SodaMachine
         public static int GetUserInputInt(string prompt)
         {
             bool inputSuccess = false;
-
-            Console.WriteLine(prompt);
-            int input = int.Parse(Console.ReadLine());
-
+            int input = 0;
 
             while (inputSuccess == false)
             {
+                Console.WriteLine(prompt);
                 inputSuccess = int.TryParse(Console.ReadLine(), out input);
                 if (inputSuccess == false)
                 {
@@ -38,20 +36,20 @@ namespace SodaMachine
 
         public static void InsufficientFunds()
         {
-            Console.WriteLine($"You don't have enough funds!");
+            Console.WriteLine($"You don't have enough funds!\n");
         }
 
         public static void InsufficientInventory()
         {
-            Console.WriteLine("There is not enough of your soda choice in our inventory! So sorry.");
+            Console.WriteLine("There is not enough of your soda choice in our inventory! So sorry.\n");
         }
 
         public static void DisplayBackPackContents(List<Can> cans)
         {
             for (int i = 0; i < cans.Count; i++)
             {
-                Console.WriteLine("Here are the contents of your bookbag!");
-                Console.WriteLine($"{cans[i].name}");
+                Console.WriteLine("Here are the contents of your bookbag!\n");
+                Console.WriteLine($"{cans[i].name}\n");
             }
         }
         public static void DisplaySodaInventory(List<Can> inventory)
@@ -81,8 +79,6 @@ namespace SodaMachine
                
 
             }
-            // List<string> names = inventory.Select(i => i.name).Distinct();
-            // see page re: Language-Integrated Query (from David DM)
 
         }
 
@@ -101,8 +97,8 @@ namespace SodaMachine
 
             }
 
-            Console.WriteLine($"You have ${totalAvailable} in your wallet");
-            Console.WriteLine($"In {coinTypes} .");
+            Console.WriteLine($"You have ${totalAvailable} in your wallet\n");
+            Console.WriteLine($"In {coinTypes}s .\n");
 
         }
 
@@ -128,7 +124,7 @@ namespace SodaMachine
             }
             else
             {
-                Console.WriteLine("Oh no! Your selections are invalid. Please try again!");
+                Console.WriteLine("Oh no! Your selections are invalid. Please try again!\n");
             }
 
             return bothTrue;
@@ -136,7 +132,7 @@ namespace SodaMachine
 
         public static void InsufficientChange()
         {
-            Console.WriteLine("Oh no! We're out of change. Transaction unsuccessful.");
+            Console.WriteLine("Oh no! We're out of change. Transaction unsuccessful.\n");
         }
 
       

@@ -33,8 +33,8 @@ namespace SodaMachine
             UserInterface.DisplaySodaInventory(sodaMachine.inventory);
             UserInterface.DisplayCoins(customer.wallet.coins);
             payment = customer.SelectCoins(customer.wallet);
-            sodaSelection = customer.SelectSoda();
-            selectionSuccess = sodaMachine.ValidateUserSelection(sodaSelection);
+            sodaSelection = sodaMachine.SelectSoda();
+            selectionSuccess = sodaMachine.ValidateSodaSelection(sodaSelection);
             paymentSuccess = sodaMachine.ValidateUserPayment(payment);
 
             transactionSuccess = UserInterface.ValidateTwoSelections(selectionSuccess, paymentSuccess);
