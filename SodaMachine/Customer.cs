@@ -19,6 +19,22 @@ namespace SodaMachine
             backpack = new Backpack();
             intInput = 0;
         }
+        public int CheckCoinCount(string input)
+        {
+            int counter = 0;
+
+            foreach (Coin coin in wallet.coins)
+            {
+                if (input == coin.name)
+                {
+                    counter++;
+                }
+            }
+
+
+            return counter;
+
+        }
 
         public List<Coin> SelectCoins(Wallet wallet)
         {
@@ -29,12 +45,13 @@ namespace SodaMachine
                 stringInput = UserInterface.GetUserInputString("Which type of coins would you like to use?");
                 intInput = UserInterface.GetUserInputInt("How many of those coins would you like to use?");
 
-
+                
                 for (int i = 0; i < intInput; i++)
                 {
-                    if (intInput > wallet.coins.Count)
+                    if (CheckCoinCount(stringInput) < intInput)
                     {
-                        UserInterface.InsufficientFunds(payment);
+                        UserInterface.InsufficientFunds();
+                        break;
                     }
                     else
                     {
@@ -52,7 +69,7 @@ namespace SodaMachine
 
 
                 }
-                stringInput = UserInterface.GetUserInputString("Do you want to select any more?");
+                stringInput = UserInterface.GetUserInputString("Do you want to select again?");
 
                 if (stringInput == "Yes")
                 {

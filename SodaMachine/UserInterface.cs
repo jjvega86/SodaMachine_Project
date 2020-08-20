@@ -22,9 +22,9 @@ namespace SodaMachine
             return input;
         }
 
-        public static void InsufficientFunds(List<Coin> payment)
+        public static void InsufficientFunds()
         {
-            Console.WriteLine($"{UserInterface.CalculateTotal(payment)} is not enough!");
+            Console.WriteLine($"You don't have enough funds!");
         }
 
         public static void InsufficientInventory()

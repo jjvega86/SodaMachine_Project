@@ -97,7 +97,7 @@ namespace SodaMachine
             else if (inventory[userSelectionIndex].Cost > UserInterface.CalculateTotal(payment))
             {
                 GiveMoneyBack(payment);
-                UserInterface.InsufficientFunds(payment);
+                UserInterface.InsufficientFunds();
                 UserInterface.DisplayCoins(customerChange);
 
             }
