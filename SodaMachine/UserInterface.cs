@@ -40,12 +40,6 @@ namespace SodaMachine
                 Console.WriteLine($"{cans[i].name}");
             }
         }
-
-        public static void ValidateUserInput()
-        {
-            // wait until everything is working before implementing. Assume all user input is perfectu
-            // until then
-        }        
         public static void DisplaySodaInventory(List<Can> inventory)
         {
             
