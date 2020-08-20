@@ -81,6 +81,7 @@ namespace SodaMachine
                         
                         inventory.RemoveAt(i);
                         index = i;
+                        break;
                         
                         
                     }
