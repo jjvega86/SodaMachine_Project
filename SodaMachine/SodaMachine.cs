@@ -61,20 +61,27 @@ namespace SodaMachine
         public bool ValidateUserSelection(string input) 
         {
             bool selectionSuccess = false;
-            for (int i = 0; i < inventory.Count; i++)
+            while (selectionSuccess == false)
             {
-                if(input == inventory[i].name)
-                {                   
-                    userSelectionIndex = i;
-                    userSelection = input;
-                    selectionSuccess = true;   
-                }
-                else
+                for (int i = 0; i < inventory.Count; i++)
                 {
-                    UserInterface.InsufficientInventory();
+                    if (input == inventory[i].name)
+                    {
+                        userSelectionIndex = i;
+                        userSelection = input;
+                        selectionSuccess = true;
+                        break;
+                    }
+                    else
+                    {
+                        UserInterface.InsufficientInventory();
+                        
 
+                    }
                 }
+
             }
+            
             return selectionSuccess;
         }
 
@@ -121,17 +128,16 @@ namespace SodaMachine
 
             for (int i = 0; i < register.Count; i++)
             {
-                if (changeAmount > register[i].Value)
+                if (changeAmount == 0)
+                {
+                    break;
+                }
+                else if (changeAmount > register[i].Value)
                 {
                     customerChange.Add(register[i]);
                     changeAmount -= register[i].Value;
 
-                }
-                else if (changeAmount == 0)
-                {
-                    break;
-                }
-                
+                }                              
                 else
                 {
                     continue;

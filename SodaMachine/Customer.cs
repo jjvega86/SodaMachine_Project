@@ -55,7 +55,8 @@ namespace SodaMachine
                 }
 
 
-            } 
+            }
+            RemovePaymentFromWallet(payment);
             return payment;
 
         }
@@ -64,6 +65,15 @@ namespace SodaMachine
         {
             stringInput = UserInterface.GetUserInputString("Please pick the soda you would like!");
             return stringInput;
+        }
+
+        private void RemovePaymentFromWallet(List<Coin> payment)
+        {
+            foreach (Coin coin in payment)
+            {
+                wallet.coins.Remove(coin);
+            }
+
         }
 
         public void AddChangeToWallet(List<Coin> change)

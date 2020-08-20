@@ -34,16 +34,14 @@ namespace SodaMachine
             UserInterface.DisplayCoins(customer.wallet.coins);
             payment = customer.SelectCoins(customer.wallet);
             sodaSelection = customer.SelectSoda();
-
-            paymentSuccess = sodaMachine.ValidateUserPayment(payment);
             selectionSuccess = sodaMachine.ValidateUserSelection(sodaSelection);
+            paymentSuccess = sodaMachine.ValidateUserPayment(payment);
 
             transactionSuccess = UserInterface.ValidateTwoSelections(selectionSuccess, paymentSuccess);
 
             customer.AddChangeToWallet(sodaMachine.customerChange);
             customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));
             UserInterface.DisplayBackPackContents(customer.backpack.cans);
-            //add Summary UserInterface method that details transaction details
             RunSimulation();
 
         }
