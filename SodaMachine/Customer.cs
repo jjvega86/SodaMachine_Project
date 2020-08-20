@@ -20,9 +20,6 @@ namespace SodaMachine
             intInput = 0;
         }
 
-        
-
-
         public List<Coin> SelectCoins(Wallet wallet)
         {
             bool choiceComplete = false;

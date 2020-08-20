@@ -16,22 +16,22 @@ namespace SodaMachine
 
         public SodaMachine()
         {
-            register = new List<Coin>();           
-            AddCoinsToRegister(new Quarter(), 20);
-            AddCoinsToRegister(new Dime(), 10);
-            AddCoinsToRegister(new Nickel(), 20);
-            AddCoinsToRegister(new Penny(), 50);           
+            register = new List<Coin>();
+            AddInitialCoinsToRegister(new Quarter(), 20);
+            AddInitialCoinsToRegister(new Dime(), 10);
+            AddInitialCoinsToRegister(new Nickel(), 20);
+            AddInitialCoinsToRegister(new Penny(), 50);           
             inventory = new List<Can>();
-            AddCansToInventory(new Cola(), 25);
-            AddCansToInventory(new OrangeSoda(), 25);
-            AddCansToInventory(new RootBeer(), 25);
+            AddInitialCansToInventory(new Cola(), 25);
+            AddInitialCansToInventory(new OrangeSoda(), 25);
+            AddInitialCansToInventory(new RootBeer(), 25);
 
             userSelection = "";
             userSelectionIndex = 0;
             customerChange = new List<Coin>();
         }
 
-        private void AddCoinsToRegister(Coin coin, int count)
+        private void AddInitialCoinsToRegister(Coin coin, int count)
         {
             for (int i = 0; i < count; i++)
             {
@@ -39,7 +39,7 @@ namespace SodaMachine
             }
         }
 
-        private void AddCansToInventory(Can can, int count)
+        private void AddInitialCansToInventory(Can can, int count)
         {
             for (int i = 0; i < count; i++)
             {
@@ -63,16 +63,12 @@ namespace SodaMachine
             for (int i = 0; i < inventory.Count; i++)
             {
                 if(input == inventory[i].name)
-                {
-                    
+                {                   
                     userSelectionIndex = i;
                     userSelection = input;
-                    selectionSuccess = true;
-    
+                    selectionSuccess = true;   
                 }
-
             }
-
             return selectionSuccess;
         }
 
@@ -93,14 +89,9 @@ namespace SodaMachine
 
             if (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
             {
-                while (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
-                {
-                    customerChange.Add(payment[0]);
-                    payment.RemoveAt(0);
-                    // need logic that adds coins from register to change if removed coins is less than change needed
-
-                }
+                MakeChange(payment);
                 CompleteTransaction(payment, userSelection);
+
             }
 
             // if too much money is passed in but there isn't sufficient change in register, transactionSuccess == false
@@ -112,11 +103,33 @@ namespace SodaMachine
 
         }
 
+        public void MakeChange(List<Coin> payment)
+        {
+            double changeAmount = UserInterface.CalculateTotal(payment) - inventory[userSelectionIndex].Cost;
+
+            //I want to take the total payment and the cost of the soda
+            //If the total payment is more than the cost of the soda, I want to take total payment over the cost
+            //Then add that to a list that represents the customer's change until payment and cost are equal
+            //If the coins used by the customer makes 
+
+            while (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
+            {
+                customerChange.Add(payment[0]);
+                payment.RemoveAt(0);
+                // need logic that adds coins from register to change if removed coins is less than change needed
+
+            }
+
+            while (UserInterface.CalculateTotal(customerChange) != changeAmount)
+            {
+                customerChange.Add(register[0]);
+            }
+        }
+
         public void CompleteTransaction(List<Coin> payment, string input)
         {
             AddPaymentToRegister(payment);
             userSelection = input;
-
         }
 
 
