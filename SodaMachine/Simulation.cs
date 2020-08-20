@@ -13,6 +13,8 @@ namespace SodaMachine
         List<Coin> payment;
         string sodaSelection;
         bool transactionSuccess;
+        bool paymentSuccess;
+        bool selectionSuccess;
         
 
         public Simulation()
@@ -22,6 +24,8 @@ namespace SodaMachine
             payment = new List<Coin>();
             sodaSelection = "";
             transactionSuccess = false;
+            paymentSuccess = false;
+            selectionSuccess = false;
         }
 
         public void RunSimulation() 
@@ -30,7 +34,14 @@ namespace SodaMachine
             UserInterface.DisplayCoins(customer.wallet.coins);
             payment = customer.SelectCoins(customer.wallet);
             sodaSelection = customer.SelectSoda();
-            transactionSuccess = sodaMachine.ValidateTransaction(payment, sodaSelection);            
+            paymentSuccess = sodaMachine.ValidatePayment(payment);
+            selectionSuccess = sodaMachine.ValidateSelection(sodaSelection);
+
+            if(paymentSuccess = true && selectionSuccess == true)
+            {
+                transactionSuccess = true;
+            }
+
             customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));
             UserInterface.DisplayBackPackContents(customer.backpack.cans);
 

@@ -12,7 +12,6 @@ namespace SodaMachine
         public List<Can> inventory;
         string userSelection;
         int userSelectionIndex;
-        bool transactionSuccess;
         public List<Coin> customerChange;
 
         public SodaMachine()
@@ -58,54 +57,63 @@ namespace SodaMachine
             }
         }
 
-        public bool ValidateTransaction(List<Coin> payment, string input) 
+        public bool ValidateSelection(string input) 
         {
+            bool selectionSuccess = false;
             for (int i = 0; i < inventory.Count; i++)
             {
                 if(input == inventory[i].name)
                 {
-                    userSelectionIndex = i;
-
-                    if(inventory[i].Cost == UserInterface.CalculateTotal(payment))
-                    {
-                        CompleteTransaction(payment, input);
-                        
-                    }
-
-                    if (inventory[i].Cost > UserInterface.CalculateTotal(payment))
-                    {
-                        UserInterface.InsufficientFunds(payment);
-                        //then need to give money back
-                        //re-prompt for money (SelectCoins?)
-                    }
-
-                    if(inventory[i].Cost < UserInterface.CalculateTotal(payment))
-                    {
-                        while (inventory[i].Cost < UserInterface.CalculateTotal(payment))
-                        {
-                           customerChange.Add(payment[0]);
-                           payment.RemoveAt(0);
-                           // need logic that adds coins from register to change if removed coins is less than change needed
-
-                        }
-                        CompleteTransaction(payment, input);
-                    }
-
-                    // if too much money is passed in but there isn't sufficient change in register, transactionSuccess == false
-                    //money goes back to customer
-
-                    //if there isn't sufficient inventory for the sodas, don't complete the transaction and give money back
                     
+                    userSelectionIndex = i;
+                    userSelection = input;
+                    selectionSuccess = true;
+    
                 }
 
             }
 
-            return transactionSuccess;
+            return selectionSuccess;
+        }
+
+        public bool ValidatePayment(List<Coin> payment)
+        {
+            bool paymentSuccess = false;
+            if (inventory[userSelectionIndex].Cost == UserInterface.CalculateTotal(payment))
+            {
+                CompleteTransaction(payment, userSelection);
+            }
+
+            if (inventory[userSelectionIndex].Cost > UserInterface.CalculateTotal(payment))
+            {
+                UserInterface.InsufficientFunds(payment);
+                //then need to give money back
+                //re-prompt for money (SelectCoins?)
+            }
+
+            if (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
+            {
+                while (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
+                {
+                    customerChange.Add(payment[0]);
+                    payment.RemoveAt(0);
+                    // need logic that adds coins from register to change if removed coins is less than change needed
+
+                }
+                CompleteTransaction(payment, userSelection);
+            }
+
+            // if too much money is passed in but there isn't sufficient change in register, transactionSuccess == false
+            //money goes back to customer
+
+            //if there isn't sufficient inventory for the sodas, don't complete the transaction and give money back
+
+            return paymentSuccess;
+
         }
 
         public void CompleteTransaction(List<Coin> payment, string input)
         {
-            transactionSuccess = true;
             AddPaymentToRegister(payment);
             userSelection = input;
 
