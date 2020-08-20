@@ -60,15 +60,24 @@ namespace SodaMachine
         public string SelectSoda()
         {
             string stringInput = UserInterface.GetUserInputString("Please pick the soda you would like!");
-            foreach (Can can in inventory)
+
+            bool inputValid = false;
+
+            while (inputValid == false)
             {
-                if (stringInput != can.name)
+                for (int i = 0; i < inventory.Count; i++)
                 {
-                    stringInput = UserInterface.GetUserInputString("Please enter your choice again!");
+                    if (inventory[i].name == stringInput)
+                    {
+                        inputValid = true;
+                        break;
+                    }
+
                 }
-                else
+                if (inputValid == false)
                 {
-                    break;
+                    stringInput = UserInterface.GetUserInputString("Choice invalid! Do you want to select again?");
+
                 }
             }
             return stringInput;

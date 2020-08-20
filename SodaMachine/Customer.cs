@@ -89,21 +89,27 @@ namespace SodaMachine
 
         
 
-        public string ValidateCoinSelectionInput(string input)
+        public void ValidateCoinSelectionInput(string input)
         {
-            foreach (Coin coin in wallet.coins)
+            bool inputValid = false;
+
+            while (inputValid == false)
             {
-                if(input != coin.name)
+                for (int i = 0; i < wallet.coins.Count; i++)
                 {
-                    input = UserInterface.GetUserInputString("Please enter your choice again!");
+                    if (wallet.coins[i].name == input)
+                    {
+                        inputValid = true;
+                        stringInput = input;
+                    }
+
                 }
-                else
+                if (inputValid == false)
                 {
-                    break;
+                    stringInput = UserInterface.GetUserInputString("Do you want to select again?");
+
                 }
             }
-
-            return input;
         }
 
         private void RemovePaymentFromWallet(List<Coin> payment)
