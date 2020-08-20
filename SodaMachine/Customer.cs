@@ -66,6 +66,15 @@ namespace SodaMachine
             return stringInput;
         }
 
+        public void AddChangeToWallet(List<Coin> change)
+        {
+            foreach (Coin coin in change)
+            {
+                wallet.coins.Add(coin);
+            }
+
+        }
+
         
         public void AddSodaToBackpack(Can can)
         {

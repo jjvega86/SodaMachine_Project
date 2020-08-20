@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -113,6 +114,7 @@ namespace SodaMachine
                 {
                     customerChange.Add(quarter);
                     register.Remove(quarter);
+                    changeAmount -= quarter.Value;
 
                     continue;
                 }
@@ -128,6 +130,7 @@ namespace SodaMachine
                 {
                     customerChange.Add(dime);
                     register.Remove(dime);
+                    changeAmount -= dime.Value;
 
                     continue;
                 }
@@ -144,6 +147,7 @@ namespace SodaMachine
                 {
                     customerChange.Add(nickel);
                     register.Remove(nickel);
+                    changeAmount -= nickel.Value;
 
                     continue;
                 }
@@ -160,6 +164,7 @@ namespace SodaMachine
                 {
                     customerChange.Add(penny);
                     register.Remove(penny);
+                    changeAmount -= penny.Value;
 
                     continue;
                 }
@@ -170,17 +175,9 @@ namespace SodaMachine
 
             }
 
-            while (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
-            {
-                customerChange.Add(payment[0]);
-                payment.RemoveAt(0);
-                // need logic that adds coins from register to change if removed coins is less than change needed
-
-            }
-
-
             return customerChange;
         }
+ 
 
         public void CompleteTransaction(List<Coin> payment, string input)
         {
