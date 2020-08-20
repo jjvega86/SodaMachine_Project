@@ -74,10 +74,9 @@ namespace SodaMachine
                     }
                     else
                     {
-                        UserInterface.InsufficientInventory();
-                        
-
+                        continue;
                     }
+                    
                 }
 
             }
@@ -94,12 +93,7 @@ namespace SodaMachine
                 GiveMoneyBack(payment);
 
 
-            }
-            else if (inventory[userSelectionIndex].Cost == UserInterface.CalculateTotal(payment))
-            {
-                CompleteTransaction(payment, userSelection);
-            }
-
+            }           
             else if (inventory[userSelectionIndex].Cost > UserInterface.CalculateTotal(payment))
             {
                 GiveMoneyBack(payment);
@@ -107,11 +101,17 @@ namespace SodaMachine
                 UserInterface.DisplayCoins(customerChange);
 
             }
+            else if (inventory[userSelectionIndex].Cost == UserInterface.CalculateTotal(payment))
+            {
+                CompleteTransaction(payment, userSelection);
+                paymentSuccess = true;
+            }
 
             else if (inventory[userSelectionIndex].Cost < UserInterface.CalculateTotal(payment))
             {
                 MakeChange(payment);
                 CompleteTransaction(payment, userSelection);
+                paymentSuccess = true;
 
             }
 

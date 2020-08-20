@@ -32,14 +32,23 @@ namespace SodaMachine
 
                 for (int i = 0; i < intInput; i++)
                 {
-                    foreach (Coin coin in wallet.coins)
+                    if (intInput > wallet.coins.Count)
                     {
-                        if (stringInput == coin.name)
-                        {
-                            payment.Add(coin);
-                            break;
-                        }
+                        UserInterface.InsufficientFunds(payment);
                     }
+                    else
+                    {
+                        foreach (Coin coin in wallet.coins)
+                        {
+                            if (stringInput == coin.name)
+                            {
+                                payment.Add(coin);
+                                break;
+                            }
+                        }
+
+                    }
+                    
 
 
                 }
