@@ -43,7 +43,7 @@ namespace SodaMachine
             if (transactionSuccess == true)
             {
                 customer.AddChangeToWallet(sodaMachine.customerChange);
-                customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));
+                customer.AddSodaToBackpack(sodaMachine.DispenseSoda());
                 UserInterface.DisplayBackPackContents(customer.backpack.cans);
 
             }

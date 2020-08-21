@@ -115,8 +115,6 @@ namespace SodaMachine
             {
                 UserInterface.InsufficientChange();
                 GiveMoneyBack(payment);
-
-
             }           
             else if (inventory[userSelectionIndex].Cost > UserInterface.CalculateTotal(payment))
             {
@@ -185,7 +183,6 @@ namespace SodaMachine
                 register.Remove(coin);
             }
         }
- 
 
         public void CompleteTransaction(List<Coin> payment, string input)
         {
@@ -193,39 +190,21 @@ namespace SodaMachine
             userSelection = input;
         }
 
-
-        
-
-        public Can DispenseSoda(bool transactionSuccess)
+        public Can DispenseSoda()
         {
             int index = 0;
-            if (transactionSuccess == true)
+            
+            for (int i = 0; i < inventory.Count; i++)
             {
-                for (int i = 0; i < inventory.Count; i++)
+                if (inventory[i].name.Contains(userSelection))
                 {
-                    if (inventory[i].name.Contains(userSelection))
-                    {
                         
-                        inventory.RemoveAt(i);
-                        index = i;
-                        break;
-                        
-                        
-                    }
-                    
-
-                }
-                
-
-            }
-            else
-            {
-                UserInterface.InsufficientInventory();
-            }
-
+                    inventory.RemoveAt(i);
+                    index = i;
+                    break;             
+                }                   
+            }                
             return inventory[index];
-
-
         }
 
 
