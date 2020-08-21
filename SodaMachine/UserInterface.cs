@@ -92,13 +92,13 @@ namespace SodaMachine
                 totalAvailable += coin.Value;
                 if (coinTypes.Contains(coin.name) == false)
                 {
-                    coinTypes += coin.name + "," + "";
+                    coinTypes += coin.name + ",";
                 }
 
             }
 
             Console.WriteLine($"You have ${totalAvailable} in your wallet\n");
-            Console.WriteLine($"In {coinTypes}s .\n");
+            Console.WriteLine($"Coin Types: {coinTypes}\n");
 
         }
 
@@ -133,6 +133,11 @@ namespace SodaMachine
         public static void InsufficientChange()
         {
             Console.WriteLine("Oh no! We're out of change. Transaction unsuccessful.\n");
+        }
+
+        public static void TransactionFailed()
+        {
+            Console.WriteLine("Transaction failed! Please try again.");
         }
 
       

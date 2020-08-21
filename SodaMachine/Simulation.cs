@@ -37,12 +37,23 @@ namespace SodaMachine
             selectionSuccess = sodaMachine.ValidateSodaSelection(sodaSelection);
             paymentSuccess = sodaMachine.ValidateUserPayment(payment);
 
+            
             transactionSuccess = UserInterface.ValidateTwoSelections(selectionSuccess, paymentSuccess);
 
-            customer.AddChangeToWallet(sodaMachine.customerChange);
-            customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));
-            UserInterface.DisplayBackPackContents(customer.backpack.cans);
-            RunSimulation();
+            if (transactionSuccess == true)
+            {
+                customer.AddChangeToWallet(sodaMachine.customerChange);
+                customer.AddSodaToBackpack(sodaMachine.DispenseSoda(transactionSuccess));
+                UserInterface.DisplayBackPackContents(customer.backpack.cans);
+
+            }
+            else
+            {
+                UserInterface.TransactionFailed();
+                RunSimulation();
+
+            }
+
 
         }
     }
