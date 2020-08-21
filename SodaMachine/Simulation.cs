@@ -45,6 +45,7 @@ namespace SodaMachine
                 customer.AddChangeToWallet(sodaMachine.customerChange);
                 customer.AddSodaToBackpack(sodaMachine.DispenseSoda());
                 UserInterface.DisplayBackPackContents(customer.backpack.cans);
+                RunSimulation();
 
             }
             else
